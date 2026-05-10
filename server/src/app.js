@@ -140,20 +140,12 @@ app.get('/api/health', (req, res) => {
   })
 })
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(clientDistPath))
-
-  app.get(/^(?!\/api|\/uploads).*/, (req, res) =>
-    res.sendFile(path.join(clientDistPath, 'index.html'))
-  )
-} else {
-  app.get('/', (req, res) => {
-    res.status(200).json({
-      success: true,
-      message: 'Dental Clinic API Running'
-    })
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Dental Clinic API Running'
   })
-}
+})
 
 // =========================
 // ERROR HANDLER
