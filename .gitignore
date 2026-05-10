@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment Variables
+.env
+client/.env
+server/.env
+
+# Build outputs
+client/dist/
+server/dist/
+
+# IDE and System Files
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Project specific
+brain/
+scratch/
+knowledge/
