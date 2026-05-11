@@ -130,16 +130,13 @@ export const useFaceScanner = () => {
 
         if (isGoodQuality && !verifiedLiveness) {
           // AUTO-COMPLETE for testing visibility:
-          // If confidence > 85%, progress the challenge automatically
           if (d.score > 0.85) {
             setChallengeProgress(prev => Math.min(prev + 10, 100));
             if (challengeProgress >= 100) completeChallenge();
           }
 
           processLiveness(landmarks, currentChallenge);
-
-            setBestDescriptors(prev => [...prev.slice(-9), descriptor]); // Keep last 10
-          }
+          setBestDescriptors(prev => [...prev.slice(-9), descriptor]); 
         }
       } else {
         setDetection(null);
@@ -148,6 +145,7 @@ export const useFaceScanner = () => {
       }
     }, 100);
   }, [modelsLoaded, isScanning, currentChallenge, verifiedLiveness, startChallenge]);
+
 
   const processLiveness = (landmarks, challenge) => {
     if (!challenge || verifiedLiveness) return;
