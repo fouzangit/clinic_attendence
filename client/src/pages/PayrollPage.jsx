@@ -105,8 +105,6 @@ const PayrollPage = () => {
   return (
 
     <Layout>
-
-    <Layout>
       <div className="min-h-screen">
         {/* PILL HEADER */}
         <div className="pill-header p-6 md:p-10 pb-20 md:pb-24 text-white relative">
@@ -197,8 +195,6 @@ const PayrollPage = () => {
           </div>
         </div>
       </div>
-    </Layout>
-
     </Layout>
 
   )
