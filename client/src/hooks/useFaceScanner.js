@@ -108,15 +108,23 @@ export const useFaceScanner = () => {
     setIsScanning(true);
     startChallenge();
 
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
     scanTimerRef.current = setInterval(async () => {
       const video = videoRef.current;
       if (!video || video.paused || video.ended || video.readyState < 2) return;
-      if (video.videoWidth === 0) return;
+      
+      // Mirror the video onto the canvas for the AI to read
+      canvas.width = 224;
+      canvas.height = 224 * (video.videoHeight / video.videoWidth);
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
       const detections = await faceapi.detectSingleFace(
-        video,
+        canvas,
         new faceapi.TinyFaceDetectorOptions({ inputSize: 224, scoreThreshold: 0.1 })
       ).withFaceLandmarks().withFaceDescriptor();
+
 
 
 
