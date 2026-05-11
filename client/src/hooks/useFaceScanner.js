@@ -219,10 +219,28 @@ export const useFaceScanner = () => {
     modelsLoaded, detection, confidence, status, error,
     currentChallenge, challengeProgress, verifiedLiveness,
     qualityScore, qualityIssues,
-    videoRef, startVideo: async () => {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width: 1280 } });
-      videoRef.current.srcObject = stream;
+    videoRef,
+    startVideo: async () => {
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ 
+          video: { 
+            facingMode: 'user',
+            width: { ideal: 640 },
+            height: { ideal: 480 }
+          } 
+        });
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+          // Forced play for mobile browsers
+          await videoRef.current.play().catch(e => console.error("Auto-play blocked:", e));
+        }
+      } catch (err) {
+        console.error("Camera start failed:", err);
+        setError("Camera failed to start. Please refresh or check permissions.");
+      }
     },
+
     stopVideo: () => {
       if (videoRef.current?.srcObject) videoRef.current.srcObject.getTracks().forEach(t => t.stop());
       clearInterval(scanTimerRef.current);
