@@ -36,20 +36,23 @@ export const useFaceScanner = () => {
   useEffect(() => {
     const loadModels = async () => {
       try {
-        const MODEL_URL = '/models';
+        // LOADING FROM CLOUD CDN FOR BETTER COMPATIBILITY
+        const MODEL_URL = 'https://raw.githubusercontent.com/justadudewhohacks/face-api.js/master/weights';
         await Promise.all([
-          faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+          faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
           faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
           faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
         ]);
         setModelsLoaded(true);
         setStatus('Ready');
       } catch (err) {
-        setError('Biometric engine failed to load');
+        console.error("Model load failed:", err);
+        setError('Biometric engine failed to load from cloud');
       }
     };
     loadModels();
   }, []);
+
 
   const startChallenge = useCallback(() => {
     const randomChallenge = CHALLENGES[Math.floor(Math.random() * CHALLENGES.length)];
@@ -122,8 +125,9 @@ export const useFaceScanner = () => {
 
       const detections = await faceapi.detectSingleFace(
         canvas,
-        new faceapi.TinyFaceDetectorOptions({ inputSize: 224, scoreThreshold: 0.1 })
+        new faceapi.SsdMobilenetv1Options({ minConfidence: 0.3 })
       ).withFaceLandmarks().withFaceDescriptor();
+
 
 
 
