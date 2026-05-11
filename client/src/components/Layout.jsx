@@ -3,6 +3,8 @@ import Sidebar from './Sidebar'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Layout = ({ children }) => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
 
   return (
     <div className="flex min-h-screen bg-[#f4f7fe] relative">
