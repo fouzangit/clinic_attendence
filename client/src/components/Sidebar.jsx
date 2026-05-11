@@ -13,7 +13,8 @@ import {
   FaHistory,
   FaClipboardList,
   FaUsers,
-  FaSignOutAlt
+  FaSignOutAlt,
+  FaTimes
 } from 'react-icons/fa'
 
 import { useAuth } from '../context/AuthContext'
