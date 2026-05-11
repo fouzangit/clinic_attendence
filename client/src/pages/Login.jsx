@@ -50,12 +50,14 @@ const Login = () => {
 
       <div className="w-full max-w-md px-4">
         {/* Logo and Header Wrapped in Blue Glass */}
-        <div className="bg-blue-900/40 backdrop-blur-xl border-2 border-blue-400/30 p-12 rounded-[60px] shadow-2xl mb-8 animate-in fade-in zoom-in duration-700">
+        <div className="bg-blue-900/40 backdrop-blur-xl border-2 border-blue-400/30 p-6 md:p-12 rounded-[40px] md:rounded-[60px] shadow-2xl mb-8 animate-in fade-in zoom-in duration-700">
+
           <div className="text-center mb-8">
             <div className="inline-flex bg-white/20 backdrop-blur-xl p-6 rounded-[30px] shadow-xl mb-4 border border-white/30">
               <FaShieldAlt className="text-5xl text-white" />
             </div>
-            <h1 className="text-4xl font-black text-white tracking-tight">Admin Portal</h1>
+            <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight">Admin Portal</h1>
+
             <p className="text-blue-100/80 mt-1 font-medium">Clinic 116 Management System</p>
 
           </div>

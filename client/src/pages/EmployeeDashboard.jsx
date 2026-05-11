@@ -18,28 +18,31 @@ const EmployeeDashboard = () => {
       <div className="max-w-5xl mx-auto">
         
         {/* HEADER */}
-        <div className="flex justify-between items-center mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
           <div>
-            <h1 className="text-6xl font-bold text-white">Employee Portal</h1>
-            <p className="text-white text-2xl mt-4">
+            <h1 className="text-4xl md:text-6xl font-bold text-white">Employee Portal</h1>
+            <p className="text-white text-lg md:text-2xl mt-2 md:mt-4">
               Welcome, {user?.full_name || user?.eid || 'Employee'}
             </p>
           </div>
 
+
           <button
             onClick={handleLogout}
-            className="bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-2xl font-bold text-xl transition-all shadow-lg"
+            className="w-full md:w-auto bg-red-500 hover:bg-red-600 text-white px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold text-lg md:text-xl transition-all shadow-lg"
           >
             Logout
           </button>
+
         </div>
 
         {/* CARDS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           
           {/* CHECK IN */}
-          <div className="bg-white rounded-3xl p-10 shadow-2xl hover:scale-105 transition-transform">
-            <h2 className="text-4xl font-bold mb-6 text-emerald-800">Check In</h2>
+          <div className="bg-white rounded-3xl p-6 md:p-10 shadow-2xl hover:scale-105 transition-transform">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-emerald-800">Check In</h2>
+
             <p className="text-xl text-gray-600 mb-8">
               Mark attendance using GPS location verification.
             </p>
@@ -52,8 +55,9 @@ const EmployeeDashboard = () => {
           </div>
                
           {/* CHECK OUT */}
-          <div className="bg-white rounded-3xl p-10 shadow-2xl hover:scale-105 transition-transform">
-            <h2 className="text-4xl font-bold mb-6 text-blue-800">Check Out</h2>
+          <div className="bg-white rounded-3xl p-6 md:p-10 shadow-2xl hover:scale-105 transition-transform">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-blue-800">Check Out</h2>
+
             <p className="text-xl text-gray-600 mb-8">
               Complete your shift and finalize today's working hours.
             </p>
@@ -66,8 +70,9 @@ const EmployeeDashboard = () => {
           </div>
 
           {/* MY ATTENDANCE */}
-          <div className="bg-white rounded-3xl p-10 shadow-2xl hover:scale-105 transition-transform border-b-8 border-indigo-500">
-            <h2 className="text-4xl font-bold mb-6 text-indigo-800">My Attendance</h2>
+          <div className="bg-white rounded-3xl p-6 md:p-10 shadow-2xl hover:scale-105 transition-transform border-b-8 border-indigo-500">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-indigo-800">My Attendance</h2>
+
             <p className="text-xl text-gray-600 mb-8">
               View your historical attendance records and work hours.
             </p>
