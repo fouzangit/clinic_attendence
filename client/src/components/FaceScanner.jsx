@@ -41,7 +41,14 @@ const FaceScanner = ({ onCapture }) => {
       {/* MINIMALIST SCANNER CONTAINER */}
       <div className="relative w-full aspect-square md:aspect-[4/3] max-w-xl rounded-[50px] overflow-hidden bg-black border-[6px] border-white/5 shadow-2xl group transition-all duration-500">
         
+        {/* DIAGNOSTIC BADGE */}
+        <div className="absolute top-6 left-6 z-50 flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+           <div className={`w-2 h-2 rounded-full animate-pulse ${status === 'Face Detected' ? 'bg-emerald-500' : 'bg-red-500'}`} />
+           <span className="text-white/60 text-[8px] font-black uppercase tracking-widest">{status}</span>
+        </div>
+
         {/* VIDEO FEED */}
+
         <video
           ref={videoRef}
           onPlay={handleVideoPlay}

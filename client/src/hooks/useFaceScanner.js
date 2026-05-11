@@ -133,20 +133,22 @@ export const useFaceScanner = () => {
         const { detection: d, landmarks, descriptor } = detections;
         setDetection(d.box);
         setConfidence(Math.round(d.score * 100));
+        setStatus('Face Detected');
         setQualityIssues([]);
 
         // AUTOMATIC DETECTION:
-        if (d.score > 0.3) {
-           setChallengeProgress(100);
+        if (d.score > 0.25) {
            setVerifiedLiveness(true);
            setBestDescriptors(prev => [...prev.slice(-9), descriptor]);
         }
       } else {
         setDetection(null);
         setConfidence(0);
-        setQualityIssues(['Align your face in the frame']);
+        setStatus('No Face Found');
+        setQualityIssues(['Move into better light or center your face']);
       }
     }, 200);
+
 
   }, [modelsLoaded, isScanning, currentChallenge, verifiedLiveness, startChallenge]);
 
