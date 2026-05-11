@@ -240,57 +240,57 @@ const Employees = () => {
     <Layout>
       <div className="min-h-screen">
         {/* PILL HEADER */}
-        <div className="pill-header p-10 pb-24 text-white relative">
-          <div className="flex justify-between items-center mb-8">
+        <div className="pill-header p-6 md:p-10 pb-20 md:pb-24 text-white relative">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
             <div>
-              <h1 className="text-sm font-medium opacity-80 uppercase tracking-widest mb-1">Staff Directory</h1>
-              <div className="text-5xl font-bold">
-                Registered <span className="opacity-70 font-light">Employees</span>
+              <h1 className="text-xs md:text-sm font-medium opacity-80 uppercase tracking-widest mb-1">Staff Directory</h1>
+              <div className="text-3xl md:text-5xl font-bold">
+                Registered <br className="md:hidden" /><span className="opacity-70 font-light">Employees</span>
               </div>
             </div>
             <button
                 onClick={() => setShowAddModal(true)}
-                className="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-8 py-4 rounded-[20px] font-bold text-lg transition-smooth shadow-lg flex items-center gap-2"
+                className="w-full md:w-auto bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-[20px] font-bold text-base md:text-lg transition-smooth shadow-lg flex items-center justify-center gap-2"
             >
-                <span className="text-2xl">+</span> Add Member
+                <span className="text-xl md:text-2xl">+</span> Add Member
             </button>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md p-4 rounded-[25px] flex items-center gap-4 px-6 max-w-2xl">
+          <div className="bg-white/10 backdrop-blur-md p-3 md:p-4 rounded-2xl md:rounded-[25px] flex items-center gap-4 px-5 md:px-6 w-full max-w-2xl">
             <span className="text-white/60">🔍</span>
             <input 
                 type="text" 
                 placeholder="Search by name, ID or role..." 
-                className="bg-transparent border-none outline-none text-white placeholder:text-white/50 w-full text-lg"
+                className="bg-transparent border-none outline-none text-white placeholder:text-white/40 w-full text-base md:text-lg"
             />
           </div>
         </div>
 
-        <div className="p-10 -mt-12 space-y-4">
+        <div className="p-6 md:p-10 -mt-8 md:-mt-12 space-y-4">
           {loading ? (
             <div className="flex justify-center p-20">
-              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600"></div>
+              <div className="animate-spin rounded-full h-12 w-12 md:h-16 md:w-16 border-b-2 border-blue-600"></div>
             </div>
           ) : (
             employees.map((employee) => (
               <div
                 key={employee.id}
-                className="bg-white rounded-[30px] p-6 card-shadow flex items-center justify-between border border-gray-50 group transition-smooth hover:scale-[1.01]"
+                className="bg-white rounded-2xl md:rounded-[30px] p-4 md:p-6 card-shadow flex flex-col md:flex-row items-center justify-between border border-gray-50 group transition-smooth hover:scale-[1.01] gap-4"
               >
-                <div className="flex items-center gap-6">
+                <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full md:w-auto text-center md:text-left">
                   <img
                     src={employee.face_image || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(employee.full_name) + '&background=dbeafe&color=2563eb&size=150'}
                     alt="employee"
-                    className="w-24 h-24 rounded-full object-cover border-4 border-blue-50 shadow-md"
+                    className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-4 border-blue-50 shadow-md"
                     onError={(e) => { e.target.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(employee.full_name) + '&background=dbeafe&color=2563eb&size=150' }}
                   />
                   <div>
-                    <h2 className="text-2xl font-black text-[#2c3e50]">{employee.full_name}</h2>
-                    <div className="flex items-center gap-3 mt-1">
-                        <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                    <h2 className="text-xl md:text-2xl font-black text-[#2c3e50]">{employee.full_name}</h2>
+                    <div className="flex items-center justify-center md:justify-start gap-2 mt-1">
+                        <span className="bg-blue-50 text-blue-600 px-2 md:px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider">
                             ID: {employee.eid}
                         </span>
-                        <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+                        <span className={`px-2 md:px-3 py-1 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-wider ${
                             employee.role === 'doctor' ? 'bg-emerald-50 text-emerald-600' : 'bg-sky-50 text-sky-600'
                         }`}>
                             {employee.role}
@@ -299,15 +299,15 @@ const Employees = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-12">
-                  <div className="text-right">
-                    <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Hourly Rate</p>
-                    <p className="text-xl font-black text-[#2c3e50]">₹{employee.hourly_rate}</p>
+                <div className="flex items-center justify-between md:justify-end gap-6 md:gap-12 w-full md:w-auto border-t md:border-t-0 pt-4 md:pt-0">
+                  <div className="text-left md:text-right">
+                    <p className="text-gray-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-0.5">Hourly Rate</p>
+                    <p className="text-lg md:text-xl font-black text-[#2c3e50]">₹{employee.hourly_rate}</p>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex gap-2">
                     <button 
                         onClick={() => deleteEmployee(employee.id)}
-                        className="bg-red-50 text-red-500 p-4 rounded-2xl hover:bg-red-500 hover:text-white transition-smooth shadow-sm"
+                        className="bg-red-50 text-red-500 p-3 md:p-4 rounded-xl md:rounded-2xl hover:bg-red-500 hover:text-white transition-smooth shadow-sm active:scale-90"
                     >
                         🗑️
                     </button>

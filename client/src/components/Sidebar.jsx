@@ -18,7 +18,7 @@ import {
 
 import { useAuth } from '../context/AuthContext'
 
-const Sidebar = () => {
+const Sidebar = ({ onClose }) => {
 
   const location =
     useLocation()
@@ -37,6 +37,8 @@ const Sidebar = () => {
     await logout()
 
     navigate('/')
+
+    if (onClose) onClose()
 
   }
 
@@ -85,7 +87,7 @@ const Sidebar = () => {
     <div
       className="
       w-72
-      min-h-screen
+      h-full
       bg-white
       text-[#2c3e50]
       p-6
@@ -95,16 +97,23 @@ const Sidebar = () => {
       justify-between
       border-r
       border-gray-100
+      overflow-y-auto
       "
     >
 
       <div>
 
-        <div className="mb-12">
-            <h1 className="text-3xl font-bold text-[#2a73e8]">
-                Clinic Admin
-            </h1>
-            <p className="text-gray-400 text-sm font-medium mt-1">Management Suite</p>
+        <div className="mb-12 flex justify-between items-center">
+            <div>
+              <h1 className="text-3xl font-bold text-[#2a73e8]">
+                  Clinic Admin
+              </h1>
+              <p className="text-gray-400 text-sm font-medium mt-1">Management Suite</p>
+            </div>
+            {/* CLOSE BUTTON FOR MOBILE SIDEBAR INSIDE SIDEBAR */}
+            <button onClick={onClose} className="lg:hidden text-gray-400">
+              <FaTimes size={24} />
+            </button>
         </div>
 
         <div className="space-y-3">
@@ -115,6 +124,7 @@ const Sidebar = () => {
               <Link
                 key={item.path}
                 to={item.path}
+                onClick={onClose}
                 className={`
                   flex
                   items-center

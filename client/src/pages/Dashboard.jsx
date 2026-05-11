@@ -136,44 +136,45 @@ const Dashboard = () => {
 
     return (
     <Layout>
-      <div className="min-h-screen">
+      <div className="min-h-screen pb-10">
         {/* PILL HEADER */}
-        <div className="pill-header p-10 pb-20 text-white relative">
-          <div className="flex justify-between items-center mb-8">
+        <div className="pill-header p-5 md:p-10 pb-16 md:pb-32 text-white relative">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
             <div>
-              <h1 className="text-sm font-medium opacity-80 uppercase tracking-widest mb-1">Clinic Dashboard</h1>
-              <div className="text-5xl font-bold">
-                Welcome to <span className="opacity-70 font-light">Admin</span>
+              <h1 className="text-[10px] md:text-sm font-medium opacity-80 uppercase tracking-widest mb-1">Clinic Dashboard</h1>
+              <div className="text-3xl md:text-5xl font-bold leading-tight">
+                Welcome to <br className="md:hidden" /><span className="opacity-70 font-light">Admin</span>
               </div>
             </div>
-            <div className="bg-white/20 backdrop-blur-md p-3 rounded-2xl">
-                <div className="flex items-center gap-3 px-2">
+            <div className="bg-white/10 backdrop-blur-md p-2 rounded-2xl w-full md:w-auto">
+                <div className="flex items-center gap-3 px-3 py-1">
                     <span className="text-white/60">🔍</span>
                     <input 
                         type="text" 
                         placeholder="Search stats..." 
-                        className="bg-transparent border-none outline-none text-white placeholder:text-white/50 w-64"
+                        className="bg-transparent border-none outline-none text-white placeholder:text-white/40 w-full md:w-64 text-sm"
                     />
                 </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 absolute -bottom-16 left-10 right-10">
+          {/* STAT CARDS - Relative on mobile, Absolute on Desktop */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 relative md:absolute md:-bottom-16 md:left-10 md:right-10 z-10">
             {[
-              { label: 'Total Employees', value: employees.length, color: 'blue' },
-              { label: 'Active Doctors', value: totalDoctors, color: 'emerald' },
+              { label: 'Employees', value: employees.length, color: 'blue' },
+              { label: 'Doctors', value: totalDoctors, color: 'emerald' },
               { label: 'Assistants', value: totalAssistants, color: 'sky' },
-              { label: 'Monthly Payroll', value: `₹${totalPayroll.toLocaleString()}`, color: 'indigo' }
+              { label: 'Payroll', value: `₹${totalPayroll.toLocaleString()}`, color: 'indigo' }
             ].map((stat, i) => (
-              <div key={i} className="bg-white p-6 rounded-[30px] card-shadow flex flex-col justify-center border border-gray-50">
-                <p className="text-gray-400 text-sm font-bold uppercase tracking-tight mb-2">{stat.label}</p>
-                <p className="text-3xl font-extrabold text-[#2c3e50]">{stat.value}</p>
+              <div key={i} className="bg-white p-4 md:p-6 rounded-2xl md:rounded-[30px] card-shadow flex flex-col justify-center border border-gray-100 h-24 md:h-32">
+                <p className="text-gray-400 text-[10px] md:text-sm font-bold uppercase tracking-tight mb-1 md:mb-2 line-clamp-1">{stat.label}</p>
+                <p className="text-lg md:text-3xl font-extrabold text-[#2c3e50]">{stat.value}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="p-10 mt-20 grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="p-5 md:p-10 mt-6 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
           {/* CHARTS */}
           <div className="bg-white rounded-[40px] p-10 card-shadow">
             <div className="flex justify-between items-center mb-10">
