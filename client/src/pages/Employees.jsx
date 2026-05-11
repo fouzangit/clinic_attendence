@@ -240,7 +240,8 @@ const Employees = () => {
     <Layout>
       <div className="min-h-screen">
         {/* PILL HEADER */}
-        <div className="pill-header p-6 md:p-10 pb-20 md:pb-24 text-white relative">
+        <div className="pill-header p-6 md:p-10 pb-24 md:pb-24 text-white relative">
+
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
             <div>
               <h1 className="text-xs md:text-sm font-medium opacity-80 uppercase tracking-widest mb-1">Staff Directory</h1>
@@ -321,7 +322,8 @@ const Employees = () => {
         {/* ADD MODAL */}
         {showAddModal && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-[40px] p-10 w-full max-w-xl shadow-2xl animate-in fade-in zoom-in duration-300">
+            <div className="bg-white rounded-[30px] md:rounded-[40px] p-6 md:p-10 w-full max-w-xl shadow-2xl animate-in fade-in zoom-in duration-300 max-h-[90vh] overflow-y-auto">
+
               <h2 className="text-3xl font-black mb-8 text-[#2c3e50]">New Employee Registration</h2>
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">

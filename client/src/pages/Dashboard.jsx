@@ -174,9 +174,10 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="p-5 md:p-10 mt-6 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+        <div className="p-4 md:p-10 mt-6 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
           {/* CHARTS */}
-          <div className="bg-white rounded-[40px] p-10 card-shadow">
+          <div className="bg-white rounded-[30px] md:rounded-[40px] p-6 md:p-10 card-shadow">
+
             <div className="flex justify-between items-center mb-10">
               <h2 className="text-2xl font-black text-[#2c3e50]">Payroll Analytics</h2>
               <button className="text-blue-500 font-bold text-sm">View Reports</button>
@@ -194,7 +195,8 @@ const Dashboard = () => {
             </ResponsiveContainer>
           </div>
 
-          <div className="bg-white rounded-[40px] p-10 card-shadow">
+          <div className="bg-white rounded-[30px] md:rounded-[40px] p-6 md:p-10 card-shadow">
+
             <h2 className="text-2xl font-black text-[#2c3e50] mb-10">Staff Composition</h2>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
@@ -217,8 +219,9 @@ const Dashboard = () => {
         </div>
 
         {/* LATE SECTION */}
-        <div className="p-10 pt-0">
-            <div className="bg-white rounded-[40px] p-10 card-shadow flex items-center justify-between border-l-[12px] border-red-400">
+        <div className="p-4 md:p-10 pt-0">
+            <div className="bg-white rounded-[30px] md:rounded-[40px] p-6 md:p-10 card-shadow flex flex-col md:flex-row items-center justify-between border-l-[8px] md:border-l-[12px] border-red-400 gap-4">
+
                 <div>
                     <h2 className="text-2xl font-black text-[#2c3e50]">Punctuality Warning</h2>
                     <p className="text-gray-400 font-medium">Employees arriving after shift start today</p>

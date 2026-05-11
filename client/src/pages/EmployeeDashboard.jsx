@@ -13,7 +13,8 @@ const EmployeeDashboard = () => {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-emerald-700 to-green-300 p-10">
+    <div className="min-h-screen bg-gradient-to-r from-emerald-700 to-green-300 p-4 md:p-10">
+
       <div className="max-w-5xl mx-auto">
         
         {/* HEADER */}
