@@ -164,8 +164,9 @@ const EmployeeCheckIn = () => {
       bg-gradient-to-r
       from-emerald-700
       to-green-300
-      p-10
+      p-4 md:p-10
       "
+
         >
 
             <div
@@ -173,26 +174,29 @@ const EmployeeCheckIn = () => {
         bg-white
         rounded-3xl
         shadow-2xl
-        p-10
+        p-6 md:p-10
         w-full
         max-w-4xl
         "
+
             >
 
                 <h1
                     className="
-          text-6xl
+          text-3xl md:text-6xl
           font-bold
           text-center
-          mb-10
+          mb-8 md:mb-10
           "
                 >
                     Employee Check-In
                 </h1>
 
+
                 {/* EMPLOYEE ID */}
 
-                <div className="flex gap-4 mb-8">
+                <div className="flex flex-col md:flex-row gap-4 mb-8">
+
                     <input
                         type="text"
                         placeholder="Enter Employee ID"
@@ -207,17 +211,19 @@ const EmployeeCheckIn = () => {
             border
             border-gray-300
             rounded-2xl
-            p-5
-            text-2xl
+            p-4 md:p-5
+            text-lg md:text-2xl
             "
+
                     />
                     <button
                         onClick={fetchEmployee}
                         disabled={verifyingId}
-                        className="bg-blue-600 text-white px-8 rounded-2xl font-bold text-xl"
+                        className="bg-blue-600 text-white px-8 py-4 md:py-0 rounded-2xl font-bold text-lg md:text-xl shadow-lg"
                     >
                         {verifyingId ? '...' : 'Verify ID'}
                     </button>
+
                 </div>
 
                 {/* FACE */}
@@ -239,28 +245,31 @@ const EmployeeCheckIn = () => {
                             <button
                                 onClick={checkIn}
                                 disabled={loading}
-                                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-5 rounded-2xl font-bold text-3xl shadow-xl transition-all disabled:opacity-50"
+                                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 md:py-5 rounded-2xl font-bold text-xl md:text-3xl shadow-xl transition-all disabled:opacity-50"
                             >
                                 {loading ? 'Processing...' : 'Post Attendance'}
                             </button>
+
                         )}
                     </div>
                 )}
 
                 {!employee && (
-                    <div className="text-center p-20 bg-gray-100 rounded-3xl text-gray-500 text-2xl border-2 border-dashed border-gray-300">
+                    <div className="text-center p-10 md:p-20 bg-gray-100 rounded-3xl text-gray-500 text-xl md:text-2xl border-2 border-dashed border-gray-300">
                         Please verify your Employee ID to start face scan
                     </div>
                 )}
+
 
                 {/* BACK BUTTON */}
                 <div className="mt-10">
                     <button
                         onClick={() => navigate('/employee-dashboard')}
-                        className="w-full bg-gray-500 hover:bg-gray-600 text-white py-5 rounded-2xl font-bold text-3xl"
+                        className="w-full bg-gray-500 hover:bg-gray-600 text-white py-4 md:py-5 rounded-2xl font-bold text-xl md:text-3xl"
                     >
                         Back
                     </button>
+
                 </div>
 
             </div>

@@ -113,11 +113,12 @@ const FaceScanner = ({
             className="w-full h-full object-cover mirror"
         />
         {cameraError && (
-            <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center text-white text-center p-8">
-                <div className="text-3xl font-bold mb-4">Camera unavailable</div>
-                <p className="text-xl max-w-xl">{cameraError}</p>
+            <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center text-white text-center p-6 md:p-8">
+                <div className="text-xl md:text-3xl font-bold mb-4">Camera unavailable</div>
+                <p className="text-base md:text-xl max-w-xl">{cameraError}</p>
             </div>
         )}
+
         {loading && (
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                 <div className="animate-spin rounded-full h-20 w-20 border-b-4 border-white"></div>
@@ -126,10 +127,10 @@ const FaceScanner = ({
         <div className="absolute inset-0 border-[20px] border-white/10 pointer-events-none rounded-3xl"></div>
       </div>
 
-      <div className="flex gap-5 mt-10 w-full max-w-2xl">
+      <div className="flex flex-col md:flex-row gap-4 mt-6 md:mt-10 w-full max-w-2xl">
         <button
           onClick={startVideo}
-          className="flex-1 bg-slate-600 hover:bg-slate-700 text-white py-5 rounded-2xl text-2xl font-bold transition-all shadow-lg"
+          className="flex-1 bg-slate-600 hover:bg-slate-700 text-white py-4 md:py-5 rounded-xl md:rounded-2xl text-lg md:text-2xl font-bold transition-all shadow-lg"
         >
           Reset Camera
         </button>
@@ -137,11 +138,12 @@ const FaceScanner = ({
         <button
           onClick={verifyFace}
           disabled={loading}
-          className="flex-2 bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-5 rounded-2xl text-2xl font-bold disabled:opacity-50 transition-all shadow-lg"
+          className="flex-1 md:flex-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 md:px-12 py-4 md:py-5 rounded-xl md:rounded-2xl text-lg md:text-2xl font-bold disabled:opacity-50 transition-all shadow-lg"
         >
           {loading ? 'Analyzing...' : (onCapture ? 'Capture Image' : 'Verify Identity')}
         </button>
       </div>
+
     </div>
   )
 }

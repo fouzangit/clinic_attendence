@@ -86,9 +86,11 @@ const EmployeeCheckOut = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-emerald-700 to-green-300 p-10">
-      <div className="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-4xl">
-        <h1 className="text-6xl font-bold text-center mb-10">Employee Check-Out</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-emerald-700 to-green-300 p-4 md:p-10">
+
+      <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-10 w-full max-w-4xl">
+        <h1 className="text-3xl md:text-6xl font-bold text-center mb-10">Employee Check-Out</h1>
+
 
         <div className="mb-8">
           <input
@@ -97,7 +99,8 @@ const EmployeeCheckOut = () => {
             value={employeeId}
             onChange={(e) => setEmployeeId(e.target.value)}
             disabled={loading || submitted}
-            className="w-full border border-gray-300 rounded-2xl p-5 text-2xl"
+            className="w-full border border-gray-300 rounded-2xl p-4 md:p-5 text-lg md:text-2xl"
+
           />
         </div>
 
@@ -106,7 +109,8 @@ const EmployeeCheckOut = () => {
             onCapture={handleFaceCapture} 
         />
 
-        <div className="text-center text-2xl font-semibold mt-8 mb-8">
+        <div className="text-center text-xl md:text-2xl font-semibold mt-8 mb-8">
+
           {capturedImage ? (
             <span className="text-blue-600">Face captured. You can now post attendance.</span>
           ) : (
@@ -118,14 +122,16 @@ const EmployeeCheckOut = () => {
           <button
             onClick={() => checkOut()}
             disabled={loading || submitted || !capturedImage}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-5 rounded-2xl font-bold text-3xl shadow-lg transition-all disabled:opacity-50"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 md:py-5 rounded-2xl font-bold text-xl md:text-3xl shadow-lg transition-all disabled:opacity-50"
+
           >
             {loading ? 'Processing...' : 'Post Attendance'}
           </button>
 
           <button
             onClick={() => navigate('/employee-dashboard')}
-            className="w-full bg-gray-500 hover:bg-gray-600 text-white py-5 rounded-2xl font-bold text-3xl"
+            className="w-full bg-gray-500 hover:bg-gray-600 text-white py-4 md:py-5 rounded-2xl font-bold text-xl md:text-3xl"
+
           >
             Back to Dashboard
           </button>
