@@ -86,10 +86,12 @@ const EmployeeCheckOut = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-emerald-700 to-green-300 p-4 md:p-10">
+    <div className="min-h-screen flex items-center justify-center bg-[#0f172a] p-4 md:p-10">
 
-      <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-10 w-full max-w-4xl">
-        <h1 className="text-3xl md:text-6xl font-bold text-center mb-10">Employee Check-Out</h1>
+
+      <div className="bg-slate-900/50 backdrop-blur-2xl rounded-[40px] md:rounded-[60px] shadow-2xl p-6 md:p-12 w-full max-w-4xl border border-white/5">
+        <h1 className="text-3xl md:text-5xl font-black text-center text-white mb-8 md:mb-12 tracking-tight">Biometric <span className="text-blue-400">Check-Out</span></h1>
+
 
 
         <div className="mb-8">
@@ -99,7 +101,8 @@ const EmployeeCheckOut = () => {
             value={employeeId}
             onChange={(e) => setEmployeeId(e.target.value)}
             disabled={loading || submitted}
-            className="w-full border border-gray-300 rounded-2xl p-4 md:p-5 text-lg md:text-2xl"
+            className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 md:p-5 text-lg md:text-2xl text-white placeholder:text-white/20 focus:ring-2 ring-blue-500 outline-none"
+
 
           />
         </div>

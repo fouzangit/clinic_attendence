@@ -30,6 +30,10 @@ from './routes/uploadRoutes.js'
 import authRoutes
 from './routes/authRoutes.js'
 
+import hrRoutes
+from './routes/hrRoutes.js'
+
+
 dotenv.config()
 
 const app = express()
@@ -131,6 +135,15 @@ app.use(
   authRoutes
 
 )
+
+app.use(
+
+  '/api/hr',
+
+  hrRoutes
+
+)
+
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({
