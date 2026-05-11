@@ -230,13 +230,16 @@ export const useFaceScanner = () => {
     return canvas.toDataURL('image/jpeg', 0.8);
   }, [verifiedLiveness]);
 
+  const isStarting = useRef(false);
+
   return {
     modelsLoaded, detection, confidence, status, error,
     currentChallenge, challengeProgress, verifiedLiveness,
     qualityScore, qualityIssues,
     videoRef,
     startVideo: async () => {
-
+      if (isStarting.current) return;
+      isStarting.current = true;
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ 
           video: { 
@@ -247,14 +250,19 @@ export const useFaceScanner = () => {
         });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
-          // Forced play for mobile browsers
-          await videoRef.current.play().catch(e => console.error("Auto-play blocked:", e));
+          // Ensure video is ready before playing
+          videoRef.current.onloadedmetadata = () => {
+            videoRef.current.play().catch(e => console.warn("Auto-play blocked:", e));
+          };
         }
       } catch (err) {
         console.error("Camera start failed:", err);
-        setError("Camera failed to start. Please refresh or check permissions.");
+        setError("Camera failed to start. Please check permissions.");
+      } finally {
+        isStarting.current = false;
       }
     },
+
 
     stopVideo: () => {
       if (videoRef.current?.srcObject) videoRef.current.srcObject.getTracks().forEach(t => t.stop());
