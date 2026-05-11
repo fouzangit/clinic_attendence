@@ -56,7 +56,8 @@ const Login = () => {
               <FaShieldAlt className="text-5xl text-white" />
             </div>
             <h1 className="text-4xl font-black text-white tracking-tight">Admin Portal</h1>
-            <p className="text-blue-100/80 mt-1 font-medium">Clinic Management System</p>
+            <p className="text-blue-100/80 mt-1 font-medium">Clinic 116 Management System</p>
+
           </div>
 
           {/* Card */}

@@ -6,10 +6,11 @@ const EmployeeDashboard = () => {
   const navigate = useNavigate()
   const { user, logout } = useAuth()
 
-  const handleLogout = () => {
-    logout()
+  const handleLogout = async () => {
+    await logout()
     navigate('/employee-login')
   }
+
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-emerald-700 to-green-300 p-10">

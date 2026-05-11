@@ -54,7 +54,8 @@ const EmployeeLogin = () => {
               <FaUserTie className="text-5xl text-white" />
             </div>
             <h1 className="text-4xl font-black text-white tracking-tight">Staff Portal</h1>
-            <p className="text-blue-100/80 mt-1 font-medium">Attendance & Payroll</p>
+            <p className="text-blue-100/80 mt-1 font-medium">Clinic 116 Attendance & Payroll</p>
+
           </div>
 
           {/* Card */}
