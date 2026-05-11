@@ -133,19 +133,21 @@ export const useFaceScanner = () => {
         const { detection: d, landmarks, descriptor } = detections;
         setDetection(d.box);
         setConfidence(Math.round(d.score * 100));
+        setQualityIssues([]);
 
         // AUTOMATIC DETECTION:
-        // No challenges needed. If we see a face with confidence > 20%, we verify!
-        if (d.score > 0.2) {
+        if (d.score > 0.3) {
            setChallengeProgress(100);
            setVerifiedLiveness(true);
            setBestDescriptors(prev => [...prev.slice(-9), descriptor]);
         }
       } else {
         setDetection(null);
-        setQualityIssues(['Align your face']);
+        setConfidence(0);
+        setQualityIssues(['Align your face in the frame']);
       }
     }, 200);
+
   }, [modelsLoaded, isScanning, currentChallenge, verifiedLiveness, startChallenge]);
 
 
