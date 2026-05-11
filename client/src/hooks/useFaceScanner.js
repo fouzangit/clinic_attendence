@@ -109,12 +109,15 @@ export const useFaceScanner = () => {
     startChallenge();
 
     scanTimerRef.current = setInterval(async () => {
-      if (!videoRef.current || videoRef.current.paused || videoRef.current.ended) return;
+      const video = videoRef.current;
+      if (!video || video.paused || video.ended || video.readyState < 2) return;
+      if (video.videoWidth === 0) return;
 
       const detections = await faceapi.detectSingleFace(
-        videoRef.current,
-        new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.1 })
+        video,
+        new faceapi.TinyFaceDetectorOptions({ inputSize: 224, scoreThreshold: 0.1 })
       ).withFaceLandmarks().withFaceDescriptor();
+
 
 
       if (detections) {
