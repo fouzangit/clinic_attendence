@@ -109,12 +109,13 @@ export const useFaceScanner = () => {
     startChallenge();
 
     scanTimerRef.current = setInterval(async () => {
-      if (!videoRef.current) return;
+      if (!videoRef.current || videoRef.current.paused || videoRef.current.ended) return;
 
       const detections = await faceapi.detectSingleFace(
         videoRef.current,
-        new faceapi.TinyFaceDetectorOptions({ inputSize: 160, scoreThreshold: 0.5 })
+        new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.1 })
       ).withFaceLandmarks().withFaceDescriptor();
+
 
       if (detections) {
         const { detection: d, landmarks, descriptor } = detections;
@@ -164,29 +165,33 @@ export const useFaceScanner = () => {
     const rightEye = landmarks.getRightEye();
     const getEAR = (eye) => (Math.hypot(eye[1].x - eye[5].x, eye[1].y - eye[5].y) + Math.hypot(eye[2].x - eye[4].x, eye[2].y - eye[4].y)) / (2 * Math.hypot(eye[0].x - eye[3].x, eye[0].y - eye[3].y));
     const ear = (getEAR(leftEye) + getEAR(rightEye)) / 2;
-    if (lastEyeRatioRef.current > 0.25 && ear < 0.20) {
+    if (lastEyeRatioRef.current > 0.25 && ear < 0.22) {
       blinkCountRef.current++;
       setChallengeProgress(prev => Math.min(prev + 50, 100));
     }
     lastEyeRatioRef.current = ear;
-    if (blinkCountRef.current >= 2) completeChallenge();
+    if (blinkCountRef.current >= 1) completeChallenge(); // Only 1 blink needed for mobile
+
   };
 
   const detectHeadTurn = (landmarks, direction) => {
     const nose = landmarks.getNose()[0];
     if (!initialFacePosRef.current) { initialFacePosRef.current = nose.x; return; }
     const diff = nose.x - initialFacePosRef.current;
-    if ((direction === 'turn_left' && diff < -35) || (direction === 'turn_right' && diff > 35)) {
+    if ((direction === 'turn_left' && diff < -25) || (direction === 'turn_right' && diff > 25)) {
       setChallengeProgress(100);
       completeChallenge();
     }
+
   };
 
   const detectSmile = (landmarks) => {
     const mouth = landmarks.getMouth();
     const width = Math.hypot(mouth[0].x - mouth[6].x, mouth[0].y - mouth[6].y);
     const jaw = Math.hypot(landmarks.getJawOutline()[0].x - landmarks.getJawOutline()[16].x, landmarks.getJawOutline()[0].y - landmarks.getJawOutline()[16].y);
-    if (width / jaw > 0.48) { setChallengeProgress(100); completeChallenge(); }
+    const ratio = width / jaw;
+    if (ratio > 0.42) { setChallengeProgress(100); completeChallenge(); }
+
   };
 
   const completeChallenge = () => {
