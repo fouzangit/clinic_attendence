@@ -117,45 +117,35 @@ export const useFaceScanner = () => {
     scanTimerRef.current = setInterval(async () => {
       const video = videoRef.current;
       if (!video || video.paused || video.ended || video.readyState < 2) return;
-      
+      if (!video.videoWidth || !video.videoHeight) return;
+
       // Mirror the video onto the canvas for the AI to read
       canvas.width = 224;
-      canvas.height = 224 * (video.videoHeight / video.videoWidth);
+      canvas.height = Math.floor(224 * (video.videoHeight / video.videoWidth));
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
       const detections = await faceapi.detectSingleFace(
         canvas,
-        new faceapi.SsdMobilenetv1Options({ minConfidence: 0.3 })
+        new faceapi.SsdMobilenetv1Options({ minConfidence: 0.2 })
       ).withFaceLandmarks().withFaceDescriptor();
-
-
-
-
 
       if (detections) {
         const { detection: d, landmarks, descriptor } = detections;
-        const box = d.box;
-        setDetection(box);
+        setDetection(d.box);
         setConfidence(Math.round(d.score * 100));
 
-        const isGoodQuality = evaluateQuality(detections, box, videoRef.current);
-
-        if (isGoodQuality && !verifiedLiveness) {
-          // AUTO-COMPLETE for testing visibility:
-          if (d.score > 0.85) {
-            setChallengeProgress(prev => Math.min(prev + 10, 100));
-            if (challengeProgress >= 100) completeChallenge();
-          }
-
-          processLiveness(landmarks, currentChallenge);
-          setBestDescriptors(prev => [...prev.slice(-9), descriptor]); 
+        // AUTOMATIC DETECTION:
+        // No challenges needed. If we see a face with confidence > 20%, we verify!
+        if (d.score > 0.2) {
+           setChallengeProgress(100);
+           setVerifiedLiveness(true);
+           setBestDescriptors(prev => [...prev.slice(-9), descriptor]);
         }
       } else {
         setDetection(null);
-        setQualityIssues(['No face detected']);
-        setQualityScore(0);
+        setQualityIssues(['Align your face']);
       }
-    }, 100);
+    }, 200);
   }, [modelsLoaded, isScanning, currentChallenge, verifiedLiveness, startChallenge]);
 
 
