@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useFaceScanner } from '../hooks/useFaceScanner';
-import { FaShieldCheck, FaExclamationCircle, FaCheckCircle, FaUserShield, FaVideo } from 'react-icons/fa';
+import { FaExclamationCircle, FaCheckCircle, FaUserShield, FaVideo, FaSyncAlt, FaShieldAlt } from 'react-icons/fa';
+import { FaShieldCheck } from 'react-icons/fa6';
+
 
 const FaceScanner = ({ onCapture }) => {
   const {
