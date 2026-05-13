@@ -23,6 +23,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import NotFound from './pages/NotFound'
 import Landing from './pages/Landing'
 import Settings from './pages/Settings'
+import AdminLayout from './components/AdminLayout'
 import EmployeeAttendance from './pages/EmployeeAttendance'
 import { Toaster } from 'react-hot-toast'
 
@@ -44,7 +45,9 @@ function App() {
             path="/admin"
             element={
               <ProtectedRoute allowedRole="admin">
-                <Dashboard />
+                <AdminLayout>
+                  <Dashboard />
+                </AdminLayout>
               </ProtectedRoute>
             }
           />
@@ -52,7 +55,9 @@ function App() {
             path="/settings"
             element={
               <ProtectedRoute allowedRole="admin">
-                <Settings />
+                <AdminLayout>
+                  <Settings />
+                </AdminLayout>
               </ProtectedRoute>
             }
           />
@@ -60,7 +65,9 @@ function App() {
             path="/employees"
             element={
               <ProtectedRoute allowedRole="admin">
-                <Employees />
+                <AdminLayout>
+                  <Employees />
+                </AdminLayout>
               </ProtectedRoute>
             }
           />
@@ -68,7 +75,9 @@ function App() {
             path="/payroll"
             element={
               <ProtectedRoute allowedRole="admin">
-                <PayrollPage />
+                <AdminLayout>
+                  <PayrollPage />
+                </AdminLayout>
               </ProtectedRoute>
             }
           />
@@ -76,7 +85,9 @@ function App() {
             path="/payroll-history"
             element={
               <ProtectedRoute allowedRole="admin">
-                <PayrollHistory />
+                <AdminLayout>
+                  <PayrollHistory />
+                </AdminLayout>
               </ProtectedRoute>
             }
           />
@@ -84,10 +95,13 @@ function App() {
             path="/attendance-history"
             element={
               <ProtectedRoute allowedRole="admin">
-                <AttendanceHistory />
+                <AdminLayout>
+                  <AttendanceHistory />
+                </AdminLayout>
               </ProtectedRoute>
             }
           />
+
 
           {/* EMPLOYEE ROUTES */}
           <Route

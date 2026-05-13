@@ -61,8 +61,9 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] p-4 md:p-8 space-y-8">
+    <div className="bg-[#f8fafc] p-4 md:p-8 space-y-8">
       {/* HEADER */}
+
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black text-slate-900 tracking-tight">Workforce <span className="text-blue-600">Analytics</span></h1>
